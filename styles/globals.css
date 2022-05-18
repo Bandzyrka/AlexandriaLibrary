@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+    .tag-0 {
+       @apply bg-blue-200 text-blue-700;
+    }
+    .tag-1 {
+        @apply bg-green-200 text-green-700;
+     }
+     .tag-2 {
+        @apply bg-orange-200 text-orange-700;
+     }
+     .tag-3 {
+        @apply bg-red-200 text-red-700;
+     }
+     .tag-4 {
+        @apply bg-gray-200 text-gray-700;
+     }
+  
