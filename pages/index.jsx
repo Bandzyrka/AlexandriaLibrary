@@ -7,27 +7,49 @@ import React, {useState, useEffect} from 'react'
 import BookList from '../components/book-list/book-list.component'
 import { SearchIcon } from '@heroicons/react/outline';
 
-const Home = ({books, totalCount}) => {
-  const [currentBooks, setCurrentBooks] = useState(books);
-  const [pageCount, setPageCount] = useState(totalCount);
+const Home = () => {
+  const [currentBooks, setCurrentBooks] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
   const [searchInput, setSearchInput] = useState('')
-  const handlePageClick = async (event) => {
-    const query = ''
+  const [currentQuery, setCurrentQuery] = useState('https://gnikdroy.pythonanywhere.com/api/book/')
+  const [isLoading, setIsLoading] = useState(true)
+  
+  const handlePageClick = (event) => {
     if(event.selected > 0)
     {
-      query = `https://gnikdroy.pythonanywhere.com/api/book/?page=${event.selected+1}`;
-    } else { query = `https://gnikdroy.pythonanywhere.com/api/book/`} 
-    console.log(query)
-    const books = await axios.get(query);
-    setCurrentBooks(books.data.results)
-    setPageCount(event.selected)
+      setCurrentQuery(`https://gnikdroy.pythonanywhere.com/api/book/?page=${event.selected+1}`) 
+    } else { setCurrentQuery(`https://gnikdroy.pythonanywhere.com/api/book/`)
+  } 
   }
-  const handleSearchClick = async () => {
-    const query = ''
-    query = `https://gnikdroy.pythonanywhere.com/api/book/?search=${searchInput}`;
-    const books = await axios.get(query);
-    setCurrentBooks(books.data.results)
+  const handleSearchClick = () => {
+    setCurrentQuery(`https://gnikdroy.pythonanywhere.com/api/book/?search=${searchInput}`) 
   }
+  const handleSelect = (event) => {
+    let order = ''
+    switch(event.target.innerHTML){
+      case "Downloads - Descending":
+      order = '-downloads'
+      case "Downloads - Ascending":
+      order = 'downloads'
+      case "Title - Descending":
+      order = 'title'
+      case "Title - Ascending":
+      order = '-title'
+    }
+    
+    setCurrentQuery(`https://gnikdroy.pythonanywhere.com/api/book/?ordering=${order}`) 
+  }
+  useEffect(() => {
+    const fetchBooks = async (query) => {
+      setIsLoading(true)
+      const books = await axios.get(query)
+      setCurrentBooks(books.data.results)
+      setPageCount(books.data.count)
+      setIsLoading(false)
+    }    
+    fetchBooks(currentQuery).catch(console.error)
+  }, [currentQuery])
+  
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -47,14 +69,14 @@ const Home = ({books, totalCount}) => {
           </div>
         </div>
       </div>
-     
    
+      
       <ReactPaginate
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
-        pageCount={totalCount}
+        pageCount={pageCount}
         previousLabel="< previous"
         pageClassName="page-item"
         pageLinkClassName="page-link"
@@ -68,15 +90,25 @@ const Home = ({books, totalCount}) => {
         containerClassName="pagination"
         activeClassName="active"
       />
-      <BookList books={currentBooks}/>
+      <div className="p-10">
+
+      <div className="dropdown inline-block relative">
+        <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-24 rounded inline-flex items-center">
+          <span className="mr-1">Order By</span>
+          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+        </button>
+        <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+          <li><p value="downloads" onClick={handleSelect} className="rounded-t cursor-pointer bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Downloads - Descending</p></li>
+          <li><p onClick={handleSelect} className="bg-gray-200 cursor-pointer hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Downloads - Ascending </p></li>
+          <li><p onClick={handleSelect} className="rounded-b cursor-pointer bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Title - Descending</p></li>
+          <li><p onClick={handleSelect} className="rounded-b cursor-pointer bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Title - Ascending</p></li>          </ul>
+      </div>
+    
+    </div>
+              
+
+      {!isLoading ? <BookList books={currentBooks}/>: null}
     </div>
   )
 }
-  Home.getInitialProps = async ({ query }) => {
-    const books = await axios.get(`https://gnikdroy.pythonanywhere.com/api/book/`);
-    return {
-        totalCount: 1000,
-        books: books.data.results,
-    };
-  }
 export default Home
