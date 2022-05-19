@@ -5,17 +5,16 @@ const BookList = ({books}) => {
   return (
     <div className="flex flex-wrap">
         {
-        books.map(book => 
-            (
-            <BookCard 
-                key={book.id}
-                id={book.id}
-                title={book.title}
-                author={book.agents[0]?.person}
-                img={book.resources.find(resource => resource.type === 'image/jpeg' && resource.uri.indexOf('medium') > 0).uri}
-                tags={book.subjects.slice(0, 5)}
-            />
-        ))}
+        books.map(book =>{
+          return book.type === 'Text' ? (<BookCard 
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            author={book.agents[0]?.person}
+            img={book.resources.find(resource => resource.type === 'image/jpeg' && resource.uri.indexOf('medium') > 0).uri}
+            tags={book.subjects.slice(0, 5)}
+        />) : null
+        } )}
     </div>
   )
 }
