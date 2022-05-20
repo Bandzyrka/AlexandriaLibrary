@@ -5,9 +5,33 @@ const Filters = ({setFilters, filters, pages}) => {
   const [searchInput, setSearchInput] = useState('')
 
   return (
-    <div className="flex w-full items-center justify-around">
+    <div className="flex w-full h-auto items-center justify-around pt-20 flex-col md:flex-row">
+      
+    <ReactPaginate
+      nextLabel="next >"
+      onPageChange={(event) =>
+        setFilters({ ...filters, page: event.selected + 1 })
+      }
+      pageRangeDisplayed={3}
+      marginPagesDisplayed={3}
+      pageCount={pages}
+      previousLabel="< previous"
+      pageClassName="page-item"
+      pageLinkClassName="page-link"
+      previousClassName="page-item"
+      previousLinkClassName="page-link"
+      nextClassName="page-item"
+      nextLinkClassName="page-link"
+      breakLabel="..."
+      breakClassName="page-item"
+      breakLinkClassName="page-link"
+      containerClassName="pagination"
+      activeClassName="active"
+      className="flex fixed z-40 top-0 left-0 justify-center items-center w-full flex-wrap mt-2 "
+    />
+    
       <div className="flex justify-center">
-        <div className="xl:w-96">
+        <div className="m-2 md:m-0 xl:w-96">
           <div
             div
             className="input-group relative flex w-full flex-wrap items-stretch"
@@ -17,7 +41,7 @@ const Filters = ({setFilters, filters, pages}) => {
               onChange={(event) => setSearchInput(event.target.value)}
               value={searchInput}
               className="form-control relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-              placeholder="Search"
+              placeholder="Search for a book"
               aria-label="Search"
               aria-describedby="button-addon2"
             />
@@ -47,31 +71,9 @@ const Filters = ({setFilters, filters, pages}) => {
         </div>
       </div>
 
-      <ReactPaginate
-        nextLabel="next >"
-        onPageChange={(event) =>
-          setFilters({ ...filters, page: event.selected + 1 })
-        }
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-        pageCount={pages}
-        previousLabel="< previous"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
-        containerClassName="pagination"
-        activeClassName="active"
-      />
-
-      <div className="p-10">
+      <div className="flex">
         <div className="dropdown relative inline-block">
-          <button className="inline-flex items-center rounded bg-gray-300 py-2 px-24 font-semibold text-gray-700">
+          <button className="inline-flex items-center rounded bg-gray-300 py-2 px-12 md:px-24 font-semibold text-gray-700">
             <span className="mr-1">Order By</span>
             <svg
               className="h-4 w-4 fill-current"
@@ -103,7 +105,6 @@ const Filters = ({setFilters, filters, pages}) => {
               </p>
             </li>{' '}
           </ul>
-        </div>
       </div>
 
       <select className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 " name="languages" onChange={(e) => setFilters({...filters, languages: e.target.value})}>
@@ -176,7 +177,7 @@ const Filters = ({setFilters, filters, pages}) => {
         <option value="ale">ale</option>
         <option value="af">af</option>
     </select>
-
+    </div>
 
 
 
