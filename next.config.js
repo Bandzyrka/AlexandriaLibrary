@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['www.gutenberg.org']
+    domains: ['www.gutenberg.org', 'media.istockphoto.com']
   }
 }
