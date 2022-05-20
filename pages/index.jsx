@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import axios from 'axios'
 import React, { useState } from 'react'
 import Filters from '../components/filters/filters.component'
 import BookList from '../components/book-list/book-list.component'
+import SkeletonLoader from '../components/book-list/skeleton-loader'
 import { useQuery } from 'react-query'
 
 const useGetBooks = (filters) => {
@@ -28,7 +28,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Filters pages={data?.count/10} filters={filters} setFilters={setFilters} />
-      {!isFetching ? <BookList books={data.results} /> : null}
+      {!isFetching ? <BookList books={data.results} /> : <SkeletonLoader />}
     </div>
   )
 }
