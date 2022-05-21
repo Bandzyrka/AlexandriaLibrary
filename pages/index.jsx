@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Filters from '../components/filters/filters.component'
 import BookList from '../components/book-list/book-list.component'
 import SkeletonLoader from '../components/book-list/skeleton-loader'
+import NavBar from '../components/navbar/navbar.component'
 import { useQuery } from 'react-query'
 
 const useGetBooks = (filters) => {
@@ -27,6 +28,7 @@ const Home = () => {
         <title>Alexandria Library</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NavBar />
       <Filters pages={data?.count/10} filters={filters} setFilters={setFilters} />
       {!isFetching ? <BookList books={data.results} /> : <SkeletonLoader />}
     </div>
