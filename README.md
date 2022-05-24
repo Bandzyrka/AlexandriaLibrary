@@ -6,7 +6,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://i.postimg.cc/3RZ26XWQ/screencapture-alexandria-library-vercel-app-2022-05-24-22-55-00.png" alt="project-screenshot" width="800" height="400/">
+<img src="https://i.postimg.cc/3RZ26XWQ/screencapture-alexandria-library-vercel-app-2022-05-24-22-55-00.png" alt="project-screenshot" width="800" height="600/">
 
   
   
