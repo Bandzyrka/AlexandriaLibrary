@@ -1,23 +1,35 @@
-# Next.js + Tailwind CSS Example
+<p align="center"><img src="https://socialify.git.ci/Bandzyrka/AlexandriaLibrary/image?language=1&amp;owner=1&amp;theme=Light" alt="project-image"></p>
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+<h2>🚀 Demo</h2>
 
-## Deploy your own
+[https://alexandria-library.vercel.app](https://alexandria-library.vercel.app)
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+<h2>Project Screenshots:</h2>
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+<img src="https://i.postimg.cc/3RZ26XWQ/screencapture-alexandria-library-vercel-app-2022-05-24-22-55-00.png" alt="project-screenshot" width="800" height="400/">
 
-## How to use
+  
+  
+<h2>🧐 Features</h2>
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Here're some of the project's best features:
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app -- --example with-tailwindcss with-tailwindcss-app
-```
+*   Skleton Ui Loader
+*   React Query
+*   Pagination
+*   Filters
+*   Searching
+*   Reading Books
+*   Data from Api
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+  
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   NextJs
+*   React
+*   React Query
+*   Axios
+*   Heroicons
